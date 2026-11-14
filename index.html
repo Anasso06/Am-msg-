@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AM MSG — Messagerie</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="logo">AM</span><div><strong>AM MSG</strong><small>Messagerie privée</small></div></div>
+      <span id="connection" class="status">Connexion au serveur…</span>
+    </header>
+
+    <section id="auth" class="panel auth-panel">
+      <h1>Bienvenue sur AM MSG</h1>
+      <p class="muted">Connecte-toi ou crée ton compte pour commencer.</p>
+      <div class="tabs">
+        <button class="tab active" data-tab="login">Connexion</button>
+        <button class="tab" data-tab="register">Créer un compte</button>
+      </div>
+      <form id="loginForm">
+        <label>Nom d'utilisateur<input name="username" required minlength="3" autocomplete="username"></label>
+        <label>Mot de passe<input name="password" type="password" required autocomplete="current-password"></label>
+        <button class="primary" type="submit">Se connecter</button>
+      </form>
+      <form id="registerForm" hidden>
+        <label>Nom d'utilisateur<input name="username" required minlength="3" maxlength="30" autocomplete="username"></label>
+        <label>Mot de passe<input name="password" type="password" required minlength="8" autocomplete="new-password"></label>
+        <button class="primary" type="submit">Créer mon compte</button>
+      </form>
+      <p id="authMessage" class="message" role="status"></p>
+      <p class="hint">Les comptes et messages seront conservés sur ton hébergement, dans le dossier privé <code>storage</code>.</p>
+    </section>
+
+    <section id="app" class="workspace" hidden>
+      <aside class="panel sidebar">
+        <div class="profile"><div class="avatar" id="myAvatar">A</div><div><strong id="myName"></strong><small>Connecté</small></div><button id="logout" class="ghost">Quitter</button></div>
+        <h2>Conversations</h2>
+        <form id="newChatForm" class="new-chat">
+          <label for="recipient">Nouvelle conversation</label>
+          <input id="recipient" name="recipient" placeholder="Nom d'utilisateur" required>
+          <button class="primary" type="submit">Ouvrir</button>
+        </form>
+        <div id="chatList" class="chat-list"><p class="muted">Aucune conversation pour le moment.</p></div>
+      </aside>
+      <section class="panel conversation">
+        <div id="emptyChat" class="empty"><div class="empty-icon">✉</div><h2>Ta messagerie</h2><p>Choisis une conversation ou commence-en une nouvelle.</p></div>
+        <div id="activeChat" hidden class="chat-view">
+          <div class="chat-header"><div class="avatar" id="chatAvatar">?</div><div><strong id="chatTitle"></strong><small>Conversation privée</small></div></div>
+          <div id="messages" class="messages" aria-live="polite"></div>
+          <form id="sendForm" class="send-form"><input id="messageInput" maxlength="4000" placeholder="Écrire un message…" autocomplete="off" required><button class="primary" type="submit">Envoyer</button></form>
+        </div>
+      </section>
+    </section>
+    <footer>AM MSG · Première version · Stockage JSON côté serveur</footer>
+  </main>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
